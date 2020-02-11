@@ -9,9 +9,9 @@ import selenium.webdriver.support.expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 
-from calm.tests.qa.util.logger import CustomLogger
+from utils.common.logger import configure_log
 
-LOG = CustomLogger(__name__)
+LOG = configure_log(logging.DEBUG, __name__, "test")
 
 
 class WaitHelper(object):

@@ -48,22 +48,3 @@ class Click(object):
                 element.click()
             except Exception as exp:
                 raise exp
-
-    def hoverclick(self, movetoelement, locator, timeout=30):
-        """
-        Hovers a button and Clicks on it.
-        Args:
-            movetoelement(webelement): Webelement to Hover upon.
-            locator (webelement): Webelement to click.
-            timeout (int): timeout in seconds
-        Raises:
-            ElementNotFound, ElementNotClickable
-        Returns: None
-        """
-        try:
-            WebDriverWait(self.driver, timeout).until(ec.presence_of_element_located(movetoelement))
-            element = self.driver.find_element(*movetoelement)
-            element1 = self.driver.find_element(*locator)
-            ActionChains(self.driver).move_to_element(element).click(element1).perform()
-        except Exception as ex:
-            raise ex
