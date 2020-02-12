@@ -23,9 +23,10 @@ There are two ways of deploying/run this work.
       source navi/bin/activate
       pip install -r requirements.txt
       
-   d. Install latest chrome driver 
+   d. Install latest chrome driver and set CHROME_PATH
    
       https://chromedriver.storage.googleapis.com/index.html?path=80.0.3987.16/
+      export CHROME_PATH="/Users/pavan.govindraj/nucalm/browsers/driver/chromedriver"
       
    e. Run the test using python's open source test runner(pytest)
    
