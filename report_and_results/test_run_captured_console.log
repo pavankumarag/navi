@@ -1,0 +1,50 @@
+(navi-env) Automation $pytest -sv --html=test_result.html tests/ui/test_director_films_diff_source.py
+==================================================================== test session starts =====================================================================
+platform darwin -- Python 2.7.10, pytest-4.6.9, py-1.8.1, pluggy-0.13.1 -- /Users/pavan.govindraj/navi-env/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '2.7.10', 'Platform': 'Darwin-17.7.0-x86_64-i386-64bit', 'Packages': {'py': '1.8.1', 'pytest': '4.6.9', 'pluggy': '0.13.1'}, 'Plugins': {u'html': u'1.22.1', u'metadata': u'1.8.0'}}
+rootdir: /Users/pavan.govindraj/PycharmProjects/navi/Automation
+plugins: html-1.22.1, metadata-1.8.0
+collected 4 items
+
+tests/ui/test_director_films_diff_source.py::TestDifference::test_imdb_director_details[Steven Spielberg] PASSED
+tests/ui/test_director_films_diff_source.py::TestDifference::test_letterboxd_director_details[Steven Spielberg]
+2020-02-12 10:13:06 ::utils.ui.letterboxd     INFO      Found all movies Message: UI Element //div[@id='content-nav']//following-sibling::ul/li[50]//span[@class='frame-title'] not found
+
+PASSED
+tests/ui/test_director_films_diff_source.py::TestDifference::test_compare_imdb_letterboxd_result FAILED
+tests/ui/test_director_films_diff_source.py::TestDifference::test_stats_between_imdb_letterboxd
+2020-02-12 10:13:07 ::Automation.tests.ui.test_director_films_diff_source     INFO      Movies present in both imdb and letterbox [u'the sugarland express', u'jaws', u'empire of the sun', u'something evil', u'escape to nowhere', u'saving private ryan', u'savage', u'indiana jones and the last crusade', u'a.i. artificial intelligence', u'the lost world: jurassic park', u'the bfg', u'amistad', u'close encounters of the third kind', u"amblin'", u'war horse', u'the color purple', u'catch me if you can', u'raiders of the lost ark', u'minority report', u"schindler's list", u'the post', u'war of the worlds', u'the terminal', u'lincoln', u'munich', u'e.t. the extra-terrestrial', u'night gallery', u'west side story', u'the kidnapping of edgardo mortara', u'jurassic park', u'firelight', u'duel', u'a timeless call', u'hook', u'always', u'bridge of spies', u'ready player one', u'twilight zone: the movie', u'amazing stories', u'indiana jones and the temple of doom', u'indiana jones and the kingdom of the crystal skull']
+
+2020-02-12 10:13:07 ::Automation.tests.ui.test_director_films_diff_source     INFO      Movies present in imdb but not in letterbox [u'the adventures of tintin: the secret of the unicorn', u'the last gun', u'fighter squad', u'owen marshall, counselor at law', u'the unfinished journey', u'1941', u'columbo', u'slipstream', u'marcus welby, m.d.', u'the visionary', u'the name of the game', u'the psychiatrist', u'jaws: deleted scenes', u'untitled indiana jones project', u'strokes of genius', u"steven spielberg's director's chair"]
+
+2020-02-12 10:13:07 ::Automation.tests.ui.test_director_films_diff_source     INFO      Movies present in letterbox but not in imdb [u'', u'ghost train', u'columbo: murder by the book', u'la', u'blackhawk', u'the mission', u'indiana jones', u'the adventures of tintin']
+PASSED
+
+========================================================================== FAILURES ==========================================================================
+_____________________________________________________ TestDifference.test_compare_imdb_letterboxd_result _____________________________________________________
+
+self = <Automation.tests.ui.test_director_films_diff_source.TestDifference object at 0x110750950>
+
+    def test_compare_imdb_letterboxd_result(self):
+    	"""
+    	Tests whether movies recieved from imdb and letterboxd are same or not
+    	"""
+    	global imdb_list
+    	global letterboxd_list
+>   	assert len(imdb_list) == len(letterboxd_list), "mismatch between imdb and letterboxd movie list"
+E    AssertionError: mismatch between imdb and letterboxd movie list
+E    assert 58 == 49
+E      -58
+E      +49
+
+tests/ui/test_director_films_diff_source.py:57: AssertionError
+====================================================================== warnings summary ======================================================================
+tests/ui/test_director_films_diff_source.py::TestDifference::test_imdb_director_details[Steven Spielberg]
+tests/ui/test_director_films_diff_source.py::TestDifference::test_letterboxd_director_details[Steven Spielberg]
+  /Users/pavan.govindraj/PycharmProjects/navi/Automation/conftest.py:47: DeprecationWarning: use options instead of chrome_options
+    wdriver = webdriver.Chrome(os.getenv("CHROME_PATH"), chrome_options=chrome_options)
+
+-- Docs: https://docs.pytest.org/en/latest/warnings.html
+---------------------------- generated html file: file:///Users/pavan.govindraj/PycharmProjects/navi/Automation/test_result.html -----------------------------
+====================================================== 1 failed, 3 passed, 2 warnings in 89.66 seconds =======================================================
