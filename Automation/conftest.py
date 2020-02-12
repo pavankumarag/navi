@@ -26,17 +26,12 @@ def driver(request):
 	Raises: NA
 	Returns: selenium webdriver instance
 	"""
-	global wdriver
-	global display
 	LOGGER.setLevel(logging.WARNING)
-	"""try:
-		display = Display(visible=0, size=(1680, 1050))
-		display.start()
-	except:
-		pass"""
+	display = Display(visible=0, size=(1680, 1050))
+	display.start()
 	if os.getenv("browser") is None or os.getenv("browser") == "chrome":
 		chrome_options = Options()
-		# chrome_options.add_argument('--headless')
+		chrome_options.add_argument('--headless')
 		chrome_options.add_argument("--no-sandbox")
 		chrome_options.add_argument("--disable-extensions")
 		chrome_options.add_argument("disable-infobars")
@@ -58,7 +53,7 @@ def driver(request):
 	wdriver.set_script_timeout(10)
 	def end():
 		wdriver.quit()
-		#display.stop()
+		display.stop()
 	request.addfinalizer(end)
 	return wdriver
 
