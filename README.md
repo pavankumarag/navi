@@ -8,6 +8,7 @@ There are two ways of deploying/run this work.
 **1. As a stanalone application**
 
   a. Install xvfb
+  
       mac - >https://www.xquartz.org/
       ubuntu -> sudo apt-get install xvfb xserver-xephyr vnc4server
       
@@ -15,6 +16,7 @@ There are two ways of deploying/run this work.
       git clone git@github.com:pavankumarag/navi.git
       
   c. Install requirements.txt
+  
       ```cd Navi/Automation
       virtualenv navi
       source navi/bin/activate
@@ -24,8 +26,9 @@ There are two ways of deploying/run this work.
       https://chromedriver.storage.googleapis.com/index.html?path=80.0.3987.16/
       
    e. Run the test using python's open source test runner(pytest)
-      cd Navi/Automation
-      pytest -sv --html=test_result.html tests/ui/test_director_films_diff_source.py
+   
+      ```cd Navi/Automation
+      pytest -sv --html=test_result.html tests/ui/test_director_films_diff_source.py```
       
    f. Observe the outputs generated -> report.json and test_result.html
    
@@ -38,9 +41,11 @@ There are two ways of deploying/run this work.
     git clone git@github.com:pavankumarag/navi.git
     
   c.Create a docker container 
+  
     docker run -tid -v /home/pavan.govindraj/navi:/navi --name navi pavankumarag/pytest-framework-internal:v1.0
     
   d.Execute testcase using the following steps
+  
     ```docker exec -ti navi bash
     source pytest-env/bin/activate
     cd /navi/automation
