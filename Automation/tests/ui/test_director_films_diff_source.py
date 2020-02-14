@@ -4,6 +4,7 @@ import logging
 import json
 from utils.ui.imdb import ImdbHelper
 from utils.ui.letterboxd import LetterboxdHelper
+#from utils.ui.rotten import RottenHelper
 from utils.common.logger import configure_log
 
 LOG = configure_log(logging.DEBUG, __name__, "test")
@@ -12,12 +13,13 @@ LOG = configure_log(logging.DEBUG, __name__, "test")
 
 imdb_list = []
 letterboxd_list = []
-test_params = ["Steven Spielberg"]
+test_params = [("Steven Spielberg", "director"),
+							 ("Steven Spielberg", "producer")]
 
 class TestDifference(object):
 
-	@pytest.mark.parametrize("director", test_params)
-	def test_imdb_director_details(self, driver, director):
+	@pytest.mark.parametrize(["person", "role"], test_params)
+	def test_imdb_details(self, driver, person, role):
 		"""
 		Tests fetcing movies directed by given director from IMDB
 		:param driver:
@@ -27,10 +29,15 @@ class TestDifference(object):
 		# director = "Steven Spielberg"
 		driver.get("https://www.imdb.com/")
 		imdb = ImdbHelper(driver)
-		imdb.search_for_director(director)
-		imdb.go_to_directed_movies()
-		imdb_list = imdb.get_all_movies_of_director()
-		assert len(imdb_list) > 0, "Getting movies from imdb failed"
+		if role == "director":
+			imdb.search_for_director(person)
+			imdb.go_to_directed_movies()
+		elif role == "producer":
+			imdb.search_for_director(person)
+			imdb.go_to_produced_movies()
+		imdb_list = imdb.get_all_movies()
+		#print(imdb_list)
+		#assert len(imdb_list) > 0, "Getting movies from imdb failed"
 
 	@pytest.mark.parametrize("director", test_params)
 	def test_letterboxd_director_details(self, driver, director):
@@ -47,6 +54,26 @@ class TestDifference(object):
 		letterboxd.go_to_directed_movies_page()
 		letterboxd_list = letterboxd.get_all_movies_of_director()
 		assert len(letterboxd_list) > 0, "Getting movies from letterboxd failed"
+
+	@pytest.mark.parametrize(["person", "role"], test_params)
+	def test_rotten_details(self, driver, person, role):
+		"""
+		Tests fetcing movies directed by given director from IMDB
+		:param driver:
+		:param director:
+		"""
+		global imdb_list
+		# director = "Steven Spielberg"
+		driver.get("https://www.imdb.com/")
+		rotten = RottenHelper(driver)
+		if role == "director":
+			rotten.search_for_director(person)
+			rotten.go_to_directed_movies()
+		elif role == "producer":
+			rotten.search_for_director(person)
+			rotten.go_to_produced_movies()
+		rotten_list = rotten.get_all_movies()
+		print(imdb_list)
 
 	def test_compare_imdb_letterboxd_result(self):
 		"""

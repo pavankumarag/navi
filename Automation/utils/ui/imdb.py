@@ -31,7 +31,13 @@ class ImdbHelper:
 		"""
 		self.click.button(Imdb.GET_DIRECTION_DETAILS)
 
-	def get_all_movies_of_director(self):
+	def go_to_produced_movies(self):
+		"""
+		Goes to directed movies page among other pages
+		"""
+		self.click.button(Imdb.GET_PRODUCER_DETAILS)
+
+	def get_all_movies(self):
 		"""
 		Gets all the movies in the director page
 		"""
@@ -39,6 +45,7 @@ class ImdbHelper:
 		movies = []
 		try:
 			while True:
+				LOG.info("In get all movies")
 				ele = list(Imdb.EVERY_MOVIE_NAME)
 				ele[1] %= i
 				movie_name = self.label.get_text(tuple(ele))
